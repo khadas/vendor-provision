@@ -63,6 +63,7 @@
 
 #define TEE_STORAGE_PRIVATE_REE      0x80000000
 #define TEE_STORAGE_PRIVATE_RPMB     0x80000100
+#define TEE_STORAGE_PRIVATE_EFUSE    0xF0000000
 
 #ifdef __cplusplus
 extern "C" {
@@ -98,6 +99,9 @@ int32_t key_provision_checksum_v2(uint32_t key_type, uint8_t *name_buff,
 		uint32_t name_size, uint8_t *uuid, uint8_t *checksum);
 
 int32_t key_provision_delete(uint32_t key_type, const uint8_t* uuid);
+
+int32_t key_provision_calc_checksum(const uint8_t *keybox, uint32_t keybox_size,
+		uint8_t checksum[PROVISION_KEY_CHECKSUM_LENGTH]);
 #ifdef __cplusplus
 }
 #endif
