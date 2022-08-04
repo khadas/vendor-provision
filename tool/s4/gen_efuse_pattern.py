@@ -136,7 +136,7 @@ def main():
     else:
         raw_data = bytes(SC2_EFUSE_ENTIRE_SIZE)
 
-    # generage efuse pattern with all zero
+    # generate efuse pattern with all zero
     if args.out == 'null':
         args.out = EFUSE_PATTERN_OUTPUT
     try:
