@@ -53,7 +53,7 @@
 #define PROVISION_KEY_TYPE_DOLBY_ID                    0xC1
 #define PROVISION_KEY_TYPE_INVALID                     0xFFFFFFFF
 
-// PFID: Provision Field ID
+// PFID: Provision Feild ID
 #define PROVISION_PFID_LENGTH                          (16)
 
 // DAC: Device Authentication Code
