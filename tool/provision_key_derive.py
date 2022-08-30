@@ -30,7 +30,7 @@ def derive_key_files(key_cnt, key_name, out_dir):
 	for i in range(1, key_cnt + 1):
 		file_path = out_dir + '/' + key_name + '_' + str(i).zfill(9) + '.bin'
 		f = open(file_path, 'wb')
-		f.write(os.getrandom(KEY_SIZE))
+		f.write(os.urandom(KEY_SIZE))
 		f.close()
 		print(os.path.abspath(file_path) + ' derived successfully')
 

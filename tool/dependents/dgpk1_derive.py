@@ -25,7 +25,7 @@ def main():
 	if not os.path.exists(args.out_dir):
 		os.mkdir(args.out_dir)
 
-	dgpk1 = os.getrandom(DGPK1_SIZE)
+	dgpk1 = os.urandom(DGPK1_SIZE)
 
 	fpath = args.out_dir + '/' + args.soc + '_' + TARGET_NAME + '.bin'
 	f = open(fpath, 'wb')

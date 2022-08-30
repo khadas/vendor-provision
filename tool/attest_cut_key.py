@@ -92,7 +92,7 @@ def key_pack(dirname, name_prefix):
 	keysize = [0] * 8
 	keynum = 0
 # version,keynum,keyoffset[],keysize[] = 18int
-	keyheadlen = struct.calcsize('<IIIIIIIIIIIIIIIIII')
+	keyheadlen = struct.calcsize('<18I')
 	keyoffset[0] = keyheadlen
 
 	file_name = ("AttestKey.ec", "AttestCert.ec0", "AttestCert.ec1", "AttestCert.ec2", \
@@ -111,7 +111,7 @@ def key_pack(dirname, name_prefix):
 		if i != 0:
 			keyoffset[i] = keyoffset[i-1] + keysize[i-1]
 
-	keyhead = struct.pack('<IIIIIIIIIIIIIIIIII', \
+	keyhead = struct.pack('<18I', \
 			0x2, keynum, keyoffset[0], \
 			keysize[0], keyoffset[1], keysize[1], keyoffset[2], keysize[2], \
 			keyoffset[3], keysize[3], keyoffset[4], keysize[4], \

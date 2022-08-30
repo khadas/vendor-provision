@@ -33,7 +33,7 @@ def main():
 
 	derived_num = 0
 	for i in range(1, args.count + 1):
-		dgpk2 = os.getrandom(DGPK2_SIZE)
+		dgpk2 = os.urandom(DGPK2_SIZE)
 
 		fpath = args.out_dir + '/' + args.soc + '_' + TARGET_NAME + '_' + str(i).zfill(9) + '.bin'
 		f = open(fpath, 'wb')

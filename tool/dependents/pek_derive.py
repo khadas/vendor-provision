@@ -35,7 +35,7 @@ def main():
 	for i in range(1, args.count + 1):
 		fpath = args.out_dir + '/' + args.soc + '_' + TARGET_NAME + '_' + str(i).zfill(9) + '.bin'
 		f = open(fpath, 'wb')
-		f.write(os.getrandom(PEK_SIZE))
+		f.write(os.urandom(PEK_SIZE))
 		f.close()
 
 		derived_num = derived_num + 1
