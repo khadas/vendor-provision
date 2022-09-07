@@ -48,9 +48,24 @@
 #define PROVISION_KEY_TYPE_PFID                        0x81
 #define PROVISION_KEY_TYPE_PFPK                        0x82
 #define PROVISION_KEY_TYPE_YOUTUBE_SECRET              0x91
+#define PROVISION_KEY_TYPE_NETFLIX_ESN                 0xA1
 #define PROVISION_KEY_TYPE_NETFLIX_MGKID               0xA2
 #define PROVISION_KEY_TYPE_WIDEVINE_CAS                0xB1
 #define PROVISION_KEY_TYPE_DOLBY_ID                    0xC1
+#define PROVISION_KEY_TYPE_SESG_LIC_0                  0xD0
+#define PROVISION_KEY_TYPE_SESG_LIC_1                  0xD1
+#define PROVISION_KEY_TYPE_SESG_LIC_2                  0xD2
+#define PROVISION_KEY_TYPE_SESG_LIC_3                  0xD3
+#define PROVISION_KEY_TYPE_SESG_LIC_4                  0xD4
+#define PROVISION_KEY_TYPE_SESG_LIC_5                  0xD5
+#define PROVISION_KEY_TYPE_SESG_LIC_6                  0xD6
+#define PROVISION_KEY_TYPE_SESG_LIC_7                  0xD7
+#define PROVISION_KEY_TYPE_SESG_LIC_8                  0xD8
+#define PROVISION_KEY_TYPE_SESG_LIC_9                  0xD9
+#define PROVISION_KEY_TYPE_SESG_LIC_A                  0xDA
+#define PROVISION_KEY_TYPE_SESG_LIC_B                  0xDB
+#define PROVISION_KEY_TYPE_FVP_SIGN                    0xE1
+#define PROVISION_KEY_TYPE_FVP_DEVICE                  0xE2
 #define PROVISION_KEY_TYPE_INVALID                     0xFFFFFFFF
 
 // PFID: Provision Field ID
