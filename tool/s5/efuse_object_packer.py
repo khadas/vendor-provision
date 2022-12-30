@@ -11,7 +11,7 @@ TARGET_NAME = 'efuse_obj_pack'
 LOCK = 1
 UNLOCK = 0
 
-PACK_MAGIC = 0x45465553 #'EFUS'
+PACK_MAGIC = 0x45465553 #'EFUSE'
 PACK_VERSION = 1
 
 MAX_SIZE_OBJ_NAME = 47
@@ -282,7 +282,7 @@ def derive_pack(args, dgpk2_para, pfid_para):
 			payload = payload + ret[1]
 			obj_num = obj_num + 1
 
-		ret = derive_object('PFID', pfid_para, UNLOCK, 16)
+		ret = derive_object('PFID', pfid_para, LOCK, 16)
 		if ret[0] == True:
 			payload = payload + ret[1]
 			obj_num = obj_num + 1
