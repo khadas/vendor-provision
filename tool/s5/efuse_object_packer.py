@@ -5,8 +5,13 @@
 # This source code is subject to the terms and conditions defined in the
 # file 'LICENSE' which is part of this source code package.
 
+import sys
+
+sys.dont_write_bytecode = True
+import soc
+
 DERIVED_FILE_NUM = 0
-TARGET_NAME = 'efuse_obj_pack'
+TARGET_NAME = soc.SOC + '_efuse_obj_pack'
 
 LOCK = 1
 UNLOCK = 0
@@ -33,13 +38,14 @@ def get_args():
 	#parser.add_argument('--AMLOGIC_CHIPID', type = str, default = '', help = 'file or hex string')
 	#parser.add_argument('--ACGK_ACUK_CID', type = str, default = '', help = 'file or hex string')
 	#parser.add_argument('--DVGK_CID', type = str, default = '', help = 'file or hex string')
-	#parser.add_argument('--DVUK_CID', type = str, default = '', help = 'file or hex string')
+	parser.add_argument('--DVUK_CID', type = str, default = '', help = 'file or hex string')
 	parser.add_argument('--PFID', type = str, default = '', help = 'file or hex string or directory')
 	parser.add_argument('--DVGK', type = str, default = '', help = 'file or hex string')
 	parser.add_argument('--DVUK', type = str, default = '', help = 'file or hex string')
 	#parser.add_argument('--DGPK1', type = str, default = '', help = 'file or hex string or directory')
 	parser.add_argument('--DGPK2', type = str, default = '', help = 'file or hex string or directory')
 	parser.add_argument('--HASH_NORMAL_DEVICE_ROOTCERT', type = str, default = '', help = 'file or hex string')
+	parser.add_argument('--HASH_DFU_DEVICE_ROOTCERT', type = str, default = '', help = 'file or hex string')
 	parser.add_argument('--FEAT_ENABLE_DEVICE_SCS_SIG', type = str, default = '', help = 'file or hex string')
 	parser.add_argument('--FEAT_DISABLE_NORMAL_DEVICE_ROOTCERT_0', type = str, default = '', help = 'file or hex string')
 	parser.add_argument('--FEAT_DISABLE_NORMAL_DEVICE_ROOTCERT_1', type = str, default = '', help = 'file or hex string')
@@ -116,7 +122,7 @@ def get_args():
 	parser.add_argument('--FEAT_ENABLE_EMMC_BOOTMODE', type = str, default = '', help = 'file or hex string')
 	parser.add_argument('--FEAT_ENABLE_EMMC_BOOTMODE_8BITS', type = str, default = '', help = 'file or hex string')
 
-	parser.add_argument('--out_dir', type = str, default = './efuse-object-packs/', help = 'output directory')
+	parser.add_argument('--out_dir', type = str, default = './' + soc.SOC + '-efuse-object-packs/', help = 'output directory')
 
 	return parser.parse_args()
 
@@ -173,10 +179,10 @@ def derive_pack(args, dgpk2_para, pfid_para):
 	from Cryptodome.Hash import SHA256
 
 	obj_list = (
-		('MUTE_CONFIG_0', args.MUTE_CONFIG_0, UNLOCK, 4),
-		('MUTE_CONFIG_1', args.MUTE_CONFIG_1, UNLOCK, 4),
-		('DEVICE_SCS_SEGID', args.DEVICE_SCS_SEGID, UNLOCK, 4),
-		('DEVICE_VENDOR_SEGID', args.DEVICE_VENDOR_SEGID, UNLOCK, 4),
+		('MUTE_CONFIG_0', args.MUTE_CONFIG_0, LOCK, 4),
+		('MUTE_CONFIG_1', args.MUTE_CONFIG_1, LOCK, 4),
+		('DEVICE_SCS_SEGID', args.DEVICE_SCS_SEGID, LOCK, 4),
+		('DEVICE_VENDOR_SEGID', args.DEVICE_VENDOR_SEGID, LOCK, 4),
 		#('CHIPSET_PART_CONFIG', args.CHIPSET_PART_CONFIG, UNLOCK, 4), #not supported
 		('AUDIO_VENDOR_ID', args.AUDIO_VENDOR_ID, LOCK, 4),
 		#('DEVICE_SCS_VERS', args.DEVICE_SCS_VERS, UNLOCK, 4), #not supported
@@ -186,7 +192,7 @@ def derive_pack(args, dgpk2_para, pfid_para):
 		#('AMLOGIC_CHIPID', args.AMLOGIC_CHIPID, UNLOCK, 8) #not supported
 		#('ACGK_ACUK_CID', args.ACGK_ACUK_CID, UNLOCK, 8), #not supported
 		#('DVGK_CID', args.DVGK_CID, UNLOCK, 8), #not supported
-		#('DVUK_CID', args.DVUK_CID, UNLOCK, 8), #not supported
+		('DVUK_CID', args.DVUK_CID, LOCK, 8),
 		#('PFID', args.PFID, UNLOCK, 16), #processed separately
 
 		('DVGK', args.DVGK, LOCK, 16),
@@ -194,7 +200,8 @@ def derive_pack(args, dgpk2_para, pfid_para):
 		#('DGPK1', args.DGPK1, LOCK, 16), #not supported
 		#('DGPK2', args.DGPK2, LOCK, 16), #processed separately
 
-		('HASH_NORMAL_DEVICE_ROOTCERT', args.HASH_NORMAL_DEVICE_ROOTCERT, UNLOCK, 32),
+		('HASH_NORMAL_DEVICE_ROOTCERT', args.HASH_NORMAL_DEVICE_ROOTCERT, LOCK, 32),
+		('HASH_DFU_DEVICE_ROOTCERT', args.HASH_DFU_DEVICE_ROOTCERT, LOCK, 32),
 
 		('FEAT_ENABLE_DEVICE_SCS_SIG', args.FEAT_ENABLE_DEVICE_SCS_SIG, UNLOCK, 1),
 		('FEAT_DISABLE_NORMAL_DEVICE_ROOTCERT_0', args.FEAT_DISABLE_NORMAL_DEVICE_ROOTCERT_0, UNLOCK, 1),
