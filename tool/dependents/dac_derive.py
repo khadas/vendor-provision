@@ -25,10 +25,11 @@ def get_args():
 	parser.add_argument('--pfpk_hmac_generator', type = str, required = True, help = 'pfpk hmac generator path')
 	parser.add_argument('--dgpk2', type = str, required = True, help = 'dgpk2 file or directory')
 	parser.add_argument('--pfid', type = str, required = True, help = 'pfid file or directory')
+	parser.add_argument('--nonce', type = str, default = '', help = 'nonce file or nonce hex string')
 	parser.add_argument('--out_dir', type = str, required = True, help = 'output directory')
 	return parser.parse_args()
 
-def derive_one_dac(file_dgpk2, file_pfid, out_dir, idx, key_tool, soc, pfpk_hmac_generator):
+def derive_one_dac(file_dgpk2, file_pfid, out_dir, idx, key_tool, soc, pfpk_hmac_generator, nonce):
 	import os
 	import sys
 	import binascii
@@ -47,6 +48,14 @@ def derive_one_dac(file_dgpk2, file_pfid, out_dir, idx, key_tool, soc, pfpk_hmac
 	ek1 = f.read()
 	f.close()
 
+	if os.path.isfile(nonce):
+		f = open(nonce, 'rb')
+		nonce = f.read()
+		f.close()
+	else:
+		nonce = binascii.unhexlify(nonce)
+
+
 	# due to the other para aren't supported, can only use "SC2"
 	cmd = key_tool + ' ' + ALGO + ' --chipset=SC2' \
 	      + ' --mrk=' + bytes.decode(binascii.b2a_hex(mrk)) \
@@ -58,7 +67,7 @@ def derive_one_dac(file_dgpk2, file_pfid, out_dir, idx, key_tool, soc, pfpk_hmac
 	cmd = pfpk_hmac_generator + ' -p ' + pfpk
 	pfpk_hmac = binascii.unhexlify((os.popen(cmd).read())[:64])
 
-	dac = hmac.HMAC(pfpk_hmac, ek1, hashlib.sha256).digest()
+	dac = hmac.HMAC(pfpk_hmac, ek1 + nonce, hashlib.sha256).digest()
 
 	file_dac = out_dir + '/' + soc + '_' + TARGET_NAME + '_' + idx + '.bin'
 	f = open(file_dac, 'wb')
@@ -87,7 +96,7 @@ def main():
 		os.mkdir(args.out_dir)
 
 	if os.path.isfile(args.dgpk2) and os.path.isfile(args.pfid):
-		derive_one_dac(args.dgpk2, args.pfid, args.out_dir, '000000001', args.key_tool, args.soc, args.pfpk_hmac_generator)
+		derive_one_dac(args.dgpk2, args.pfid, args.out_dir, '000000001', args.key_tool, args.soc, args.pfpk_hmac_generator, args.nonce)
 	elif os.path.isdir(args.dgpk2) and os.path.isdir(args.pfid):
 		for parent, dnames, fnames in os.walk(args.dgpk2):
 			for fname in fnames:
@@ -95,7 +104,7 @@ def main():
 				file_pfid = args.pfid + '/' + args.soc + '_pfid_' + idx + '.bin'
 				file_dgpk2 = os.path.join(parent, fname)
 				if os.path.exists(file_pfid):
-					derive_one_dac(file_dgpk2, file_pfid, args.out_dir, idx, args.key_tool, args.soc, args.pfpk_hmac_generator)
+					derive_one_dac(file_dgpk2, file_pfid, args.out_dir, idx, args.key_tool, args.soc, args.pfpk_hmac_generator, args.nonce)
 	else:
 		print('input parameter error')
 		sys.exit(1)
