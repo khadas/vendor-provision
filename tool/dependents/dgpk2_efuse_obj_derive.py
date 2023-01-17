@@ -32,15 +32,15 @@ def derive_efuse_obj(file_dgpk2, file_pfid, out_dir, idx, soc):
 	f.close()
 
 	f = open(file_pfid, 'rb')
-	pfid = bytes.decode(binascii.b2a_hex(f.read()))
+	pfid = bytes.decode(binascii.b2a_hex(f.read()[8:]))
 	f.close()
 
 	file_obj = out_dir + '/' + soc + '_dgpk2_' + idx + '.bin.efuse.obj'
 	f = open(file_obj, 'wb')
-	cmd = 'efuse_obj set DGPK2 ' + dgpk2 + ';\r\n' \
-	      + 'efuse_obj lock DGPK2;\r\n' \
-	      + 'efuse_obj set DGPK1_DGPK2_CID ' + pfid + ';\r\n' \
-	      + 'efuse_obj lock DGPK1_DGPK2_CID;'
+	cmd = 'efuse_obj set DGPK2 ' + dgpk2 + '\n' \
+	      + 'efuse_obj lock DGPK2\n' \
+	      + 'efuse_obj set DGPK1_DGPK2_CID ' + pfid + '\n' \
+	      + 'efuse_obj lock DGPK1_DGPK2_CID'
 	f.write(cmd.encode())
 	f.close()
 

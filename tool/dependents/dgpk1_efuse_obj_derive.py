@@ -36,8 +36,8 @@ def main():
 
 	fpath = args.out_dir + '/' + args.soc + '_dgpk1.bin.efuse.obj'
 	f = open(fpath, 'wb')
-	cmd = 'efuse_obj set DGPK1 ' + dgpk1 + ';\r\n' \
-	    + 'efuse_obj lock DGPK1;'
+	cmd = 'efuse_obj set DGPK1 ' + dgpk1 + '\n' \
+	    + 'efuse_obj lock DGPK1'
 	f.write(cmd.encode())
 	f.close()
 
