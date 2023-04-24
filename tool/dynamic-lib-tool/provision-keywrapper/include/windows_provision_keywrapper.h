@@ -27,31 +27,7 @@
 #ifndef _WINDOWS_PROVISION_KEYWRAPPER_H_
 #define _WINDOWS_PROVISION_KEYWRAPPER_H_
 
-/* Provision Key Type Definition */
-#define PROVISION_KEY_TYPE_WIDEVINE                    0x11
-#define PROVISION_KEY_TYPE_PLAYREADY_PRIVATE           0x21
-#define PROVISION_KEY_TYPE_PLAYREADY_PUBLIC            0x22
-#define PROVISION_KEY_TYPE_HDCP_TX14                   0x31
-#define PROVISION_KEY_TYPE_HDCP_TX22                   0x32
-#define PROVISION_KEY_TYPE_HDCP_RX14                   0x33
-#define PROVISION_KEY_TYPE_HDCP_RX22_WFD               0x34
-#define PROVISION_KEY_TYPE_HDCP_RX22_FW                0x35
-#define PROVISION_KEY_TYPE_HDCP_RX22_FW_PRIVATE        0x36
-#define PROVISION_KEY_TYPE_KEYMASTER                   0x41
-#define PROVISION_KEY_TYPE_KEYMASTER_3                 0x42
-#define PROVISION_KEY_TYPE_KEYMASTER_3_ATTEST_DEV_ID_BOX  0x43
-#define PROVISION_KEY_TYPE_EFUSE                       0x51
-#define PROVISION_KEY_TYPE_CIPLUS                      0x61
-#define PROVISION_KEY_TYPE_CIPLUS_ECP                  0x62
-#define PROVISION_KEY_TYPE_NAGRA_DEV_UUID              0x71
-#define PROVISION_KEY_TYPE_NAGRA_DEV_SECRET            0x72
-#define PROVISION_KEY_TYPE_PFID                        0x81
-#define PROVISION_KEY_TYPE_PFPK                        0x82
-#define PROVISION_KEY_TYPE_YOUTUBE_SECRET              0x91
-#define PROVISION_KEY_TYPE_NETFLIX_MGKID               0xA2
-#define PROVISION_KEY_TYPE_WIDEVINE_CAS                0xB1
-#define PROVISION_KEY_TYPE_DOLBY_ID                    0xC1
-#define PROVISION_KEY_TYPE_INVALID                     0xFFFFFFFF
+#include <key_type_def.h>
 
 #ifdef __cplusplus
 extern "C" {
