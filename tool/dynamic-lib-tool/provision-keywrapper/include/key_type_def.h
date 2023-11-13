@@ -30,6 +30,7 @@
 /* Provision Key Type Definition */
 #define PROVISION_KEY_TYPE_WIDEVINE                             0x11
 #define PROVISION_KEY_TYPE_WIDEVINE_RENEW                       0x12
+#define PROVISION_KEY_TYPE_WIDEVINE_ATSC_PRIVATE_CERT           0x13
 #define PROVISION_KEY_TYPE_PLAYREADY_PRIVATE                    0x21
 #define PROVISION_KEY_TYPE_PLAYREADY_PUBLIC                     0x22
 #define PROVISION_KEY_TYPE_HDCP_TX14                            0x31
