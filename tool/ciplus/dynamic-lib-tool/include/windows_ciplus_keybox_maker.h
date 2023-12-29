@@ -46,7 +46,7 @@ extern "C" {
        keybox_size: input keybox buffer size(min value: root_cert_size + brand_cert_size + dev_cert_size + dev_key_size + 740) / output keybox size
        sha256_size: input sha256 buffer size(min value: 32) / output sha256 size
 
-   return value: 0 issuccess, "> 0" is needed keybox buffer size, "< 0" is failed;
+   return value: 0 means success, "> 0" means needed keybox buffer size, "< 0" means failed;
  */
 __declspec(dllexport) int make_ciplus_keybox(
 		const uint8_t *root_cert,
@@ -63,6 +63,20 @@ __declspec(dllexport) int make_ciplus_keybox(
 		uint8_t *sha256_buf,
 		uint32_t *sha256_size
 		);
+
+/* input:
+       data: data to set
+       size: data size
+   return value: 0 means success, "> 0" means needed data size, "< 0" means failed;
+ */
+__declspec(dllexport) int set_prng_seed(const uint8_t *data, uint32_t size);
+__declspec(dllexport) int set_prng_key_k(const uint8_t *data, uint32_t size);
+__declspec(dllexport) int set_dh_p(const uint8_t *data, uint32_t size);
+__declspec(dllexport) int set_dh_g(const uint8_t *data, uint32_t size);
+__declspec(dllexport) int set_dh_q(const uint8_t *data, uint32_t size);
+__declspec(dllexport) int set_siv(const uint8_t *data, uint32_t size);
+__declspec(dllexport) int set_slk(const uint8_t *data, uint32_t size);
+__declspec(dllexport) int set_clk(const uint8_t *data, uint32_t size);
 
 #ifdef __cplusplus
 }
