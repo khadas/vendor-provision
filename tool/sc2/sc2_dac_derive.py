@@ -22,6 +22,7 @@ def get_args():
 	parser.add_argument('--dgpk2', type = str, required = True, help = 'dgpk2 file or directory')
 	parser.add_argument('--pfid', type = str, required = True, help = 'pfid file or directory')
 	parser.add_argument('--nonce', type = str, default = '', help = 'nonce file or nonce hex string')
+	parser.add_argument('--segid', type = str, default = '', help = 'segid file or segid hex string')	
 	parser.add_argument('--out_dir', type = str, default = './' + soc.SOC + '-' + TARGET_NAME + '/', help = 'output directory')
 	return parser.parse_args()
 
@@ -39,6 +40,7 @@ def main():
 	cmd.extend(['--dgpk2=' + args.dgpk2])
 	cmd.extend(['--pfid=' + args.pfid])
 	cmd.extend(['--nonce=' + args.nonce])
+	cmd.extend(['--segid=' + args.segid])
 	cmd.extend(['--out_dir=' + args.out_dir])
 	sub = subprocess.Popen(cmd)
 	sub.communicate()
