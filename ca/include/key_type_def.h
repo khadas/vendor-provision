@@ -68,6 +68,9 @@
 #define PROVISION_KEY_TYPE_SESG_LIC_B                           0xDB
 #define PROVISION_KEY_TYPE_FVP_SIGN                             0xE1
 #define PROVISION_KEY_TYPE_FVP_DEVICE                           0xE2
+#define PROVISION_KEY_TYPE_AIRPLAY_FAIRPLAY_OBJECT              0xF1
+#define PROVISION_KEY_TYPE_AIRPLAY_MFI_BASE_KEY                 0xF2
+#define PROVISION_KEY_TYPE_AIRPLAY_MFI_OBJECT                   0xF3
 #define PROVISION_KEY_TYPE_CUSTOMER_DEF_MIN                     0x1001
 #define PROVISION_KEY_TYPE_INVALID                              0xFFFFFFFF
 

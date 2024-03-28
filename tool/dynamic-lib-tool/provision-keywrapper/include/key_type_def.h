@@ -30,6 +30,7 @@
 /* Provision Key Type Definition */
 #define PROVISION_KEY_TYPE_WIDEVINE                             0x11
 #define PROVISION_KEY_TYPE_WIDEVINE_RENEW                       0x12
+#define PROVISION_KEY_TYPE_WIDEVINE_ATSC_PRIVATE_CERT           0x13
 #define PROVISION_KEY_TYPE_PLAYREADY_PRIVATE                    0x21
 #define PROVISION_KEY_TYPE_PLAYREADY_PUBLIC                     0x22
 #define PROVISION_KEY_TYPE_HDCP_TX14                            0x31
@@ -67,6 +68,9 @@
 #define PROVISION_KEY_TYPE_SESG_LIC_B                           0xDB
 #define PROVISION_KEY_TYPE_FVP_SIGN                             0xE1
 #define PROVISION_KEY_TYPE_FVP_DEVICE                           0xE2
+#define PROVISION_KEY_TYPE_AIRPLAY_FAIRPLAY_OBJECT              0xF1
+#define PROVISION_KEY_TYPE_AIRPLAY_MFI_BASE_KEY                 0xF2
+#define PROVISION_KEY_TYPE_AIRPLAY_MFI_OBJECT                   0xF3
 #define PROVISION_KEY_TYPE_CUSTOMER_DEF_MIN                     0x1001
 #define PROVISION_KEY_TYPE_INVALID                              0xFFFFFFFF
 
