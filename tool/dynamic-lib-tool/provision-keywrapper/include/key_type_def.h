@@ -54,6 +54,7 @@
 #define PROVISION_KEY_TYPE_NETFLIX_MGKID                        0xA2
 #define PROVISION_KEY_TYPE_WIDEVINE_CAS                         0xB1
 #define PROVISION_KEY_TYPE_DOLBY_ID                             0xC1
+#define PROVISION_KEY_TYPE_DLB_CID_HEADER                       0xC2
 #define PROVISION_KEY_TYPE_SESG_LIC_0                           0xD0
 #define PROVISION_KEY_TYPE_SESG_LIC_1                           0xD1
 #define PROVISION_KEY_TYPE_SESG_LIC_2                           0xD2
